@@ -1,0 +1,824 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[OT1, OT2]{fontenc}
+\usepackage[english,serbian]{babel}
+\usepackage{paralist}
+\usepackage{algorithm}
+\usepackage{titlesec}
+
+\topmargin       -11.0mm
+\oddsidemargin      0mm
+\evensidemargin     0mm
+\textheight     235.5mm
+\textwidth      161.0mm
+\columnsep        4.1mm
+\parindent        1.0em
+\headsep          6.3mm
+\headheight        12pt
+\lineskip           1pt
+\normallineskip     1pt
+\def\baselinestretch{1.0}
+
+\newcommand{\lN}{\mathbb{N}}
+\newcommand{\lR}{\mathbb{R}}
+
+\newtheorem{thm}{Teorema}%[section]
+\renewcommand{\thethm}{\arabic{section}.\arabic{thm}}
+
+\newtheorem{cor}{Korolar}%[section]
+\renewcommand{\thethm}{\arabic{section}.\arabic{thm}}
+
+\newtheorem{tvr}[thm]{Tvrdjenje}
+
+\newtheorem{posl}[thm]{Posledica}
+
+\newtheorem{defi}{Definicija}%[section]
+\renewcommand{\thedefi}{\arabic{section}.\arabic{defi}}
+
+\newtheorem*{nap}{Napomena}
+
+\newtheorem{lem}{Lema}[subsection]
+
+\newtheorem{pri}{Primer}[section]
+\renewcommand{\thepri}{\arabic{section}.\arabic{pri}}
+
+\newtheorem{zad}{Zadatak}
+
+\newtheorem*{dokaz}{Dokaz}
+%\renewcommand{\thedokaz}{}
+
+\newcommand{\cyr}{\fontencoding{OT2}\selectfont\selectlanguage{serbian}}
+\newcommand{\lat}{\fontencoding{T1}\selectfont\selectlanguage{english}}
+
+\newtheorem{assumption}{Assumption}[section]
+\renewcommand{\theassumption}{\arabic{section}.\arabic{assumption}}
+
+\newtheorem{theorem}{Theorem}[section]
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}}
+
+\newtheorem{lemma}{Lemma}[section]
+\renewcommand{\thelemma}{\arabic{section}.\arabic{lemma}}
+
+\newtheorem{corollary}{Corollary}[section]
+\renewcommand{\thecorollary}{\arabic{section}.\arabic{corollary}}
+
+\newtheorem{proposition}{Proposition}[section]
+\renewcommand{\theproposition}{\arabic{section}.\arabic{proposition}}
+
+\newcounter{appendixcounter}
+
+\newtheorem{theoremappendix}{Theorem}
+\renewcommand{\thetheoremappendix}{A\arabic{appendixcounter}.\arabic{theoremappendix}}
+
+%\newtheorem{lemmaappendix}{Lemma}
+%\renewcommand{\thelemmaappendix}{A\arabic{appendixcounter}.\arabic{lemmaappendix}}
+
+\newtheorem{lemmaappendix}{Lemma}
+\renewcommand{\thelemmaappendix}{A.\arabic{lemmaappendix}}
+
+\newtheorem{assumptionappendix}{Assumption}[appendixcounter]
+\renewcommand{\theassumptionappendix}{A\arabic{appendixcounter}.\arabic{assumptionappendix}}
+
+
+\newtheorem*{remark}{Remark}%[section]
+%\renewcommand{\theremark}{\arabic{section}.\arabic{remark}} 
+
+
+\newtheorem{step}{Step}%[section]
+\renewcommand{\thestep}{\arabic{step}} 
+
+\titleformat{\section}[hang]{\bf\Large}{\thesection.}{0.4em}{}
+\titleformat{\subsection}[hang]{\bf\large}{\thesubsection.}{0.4em}{}
+
+\renewcommand{\baselinestretch}{1.01}
+
+\begin{document}
+
+\title{Tejlorova formula} 
+
+\author{Milica V. Tadiћ
+\thanks{Matamatichka Gimnazija, Kraljice Natalije 37, Beograd }}
+
+\date{}
+
+\maketitle
+
+\section{Uvod} \label{section0}
+
+U ovom seminarskom radu, razmatramo Tejlorovu formulu i njene osnovne osobine. 
+Tejlorovu formulu mozhmo shvatiti/opisati kao 
+lokalnu polinomijalnu aproksimaciju funkcija koje imaju izvode viseg reda. 
+Formula je dobila ime po engleskom matematicharu 
+Bruku Tejloru koji ju je formulisao u radu objavljenom 1715 godine. 
+
+ 
+ 
+% \section{Tejlorova formula}
+%Prirodno je postaviti pitanje mozhe li se funkcija $f$, koja %ima vishe izvoda u tachki
+%a, ili njenoj okolini, aproksimirati polinomom visheg stepena %od jedan. Cilj
+%te aproksimacije je da greshka bude shto je moguћe manja. %Odgovor na ovo pitanje daje
+%Tejlorova formula.
+
+\section{Tejlorov polinom i Tejlorov rezidual}
+
+Prirodno se postavlja pitanje 
+da li polinomom visheg stepena mozhe precizno 
+aproksimirati 
+funkciju koja ima vishe izvode u nekoj tachki i njenoj
+okolini. 
+Odgovor na ovo pitanje daje
+Tejlorova formula. 
+Tejlorova formula je bazirana 
+na pojmu Tejlorovog polinoma i Tejlorovog reziduala. 
+
+
+\begin{defi}[Tejlorov polinom i Tejlorov rezidual]
+Neka je $f:\mathbb{R}\rightarrow\mathbb{R}$ funkcija 
+koja je $n$ puta diferencijabilna u tachki $a\in\mathbb{R}$. 
+Tejlorov polinom reda $n$ funkcije $f$ u tacki $a$ je 
+polinom sledeћeg oblika 
+\begin{align*}
+    T_{n}(x,a)
+    =
+    \sum_{k=0}^{n}\frac{f^{(k)}}{k!}(x-a)^{k}, 
+    \;\;\;\;\; x\in\mathbb{R}. 
+\end{align*}
+Odgovarajuћi Tejlorov rezidual je sledeћa funkcija
+\begin{align*}
+    R_{n}(x,a)
+    =
+    f(x)-T_{n}(x,a), 
+    \;\;\;\;\; x\in\mathbb{R}. 
+\end{align*}
+\end{defi}
+
+Korishћenjem Tejlorovog polinoma $T_{n}(x,a)$ i 
+Tajlorovog reziduala $R_{n}(x,a)$, 
+funkcija $f(x)$ se moze izraziti kao sledћi zbir 
+\begin{align}\label{1.1}
+    f(x)=T_{n}(x,a)+R_{n}(x,a). 
+\end{align}
+U matematichkoj analizi, jednachina (\ref{1.1}) je poznata 
+kao Tejlorova formula. 
+
+Ako je $x\approx a$, onda Tajlorov polinom $T_{n}(x,a)$ 
+precizno aproksimira $f(x)$, tj. $T_{n}(x,a)\approx f(x)$. 
+U tom slucaju, Tajlorov rezidual $R_{n}(x,a)$ predstavlja 
+greshku aproksimacije. 
+Da bih se procenila tachnost aproksimacije, 
+potrebno je odrediti kako se Tajlorov rezidual 
+ponasha kada se $x$ priblizhava $a$. 
+Ovaj problem se 
+razmatra u narednim odeljcima seminarksg rada. 
+
+\begin{pri}
+Neka je $f(x)=\exp(x)$ i $a=0$. 
+Lako se onda proverava da je $f^{(n)}(a)=1$. 
+Kao rezultat, dobijamo da je Tejlorov polinom %reda $n$
+funkcije 
+$f$ u tachki $a$ sledeћeg oblika
+\begin{align*}
+    T_{n}(x,a)
+    =
+    \sum_{k=0}^{n}\frac{x^{k}}{k!}. 
+\end{align*}
+\end{pri}
+
+\begin{pri}
+Neka je $f(x)=\cos(x)$ i $a=0$. 
+Lako se onda proverava da je $f^{(2n)}(a)=(-1)^{n}$
+i $f^{(2n+1)}(a)=0$. 
+Za posledicu imamo da je Tejlorov 
+polinom %redova $2n$ i $2n+1$ 
+funkcije $f$ u tachki $a$ sledeћeg oblika
+\begin{align*}
+    T_{2n}(x,a)
+    =
+    T_{2n+1}(x,a)
+    =
+    \sum_{k=0}^{n}\frac{(-1)^{k}x^{2k}}{(2k)!}. 
+\end{align*}
+\end{pri}
+
+\begin{pri}
+Neka je $f(x)=\ln(x)$ i $a=1$. 
+Lako se onda proverava da je $f^{(n)}(a)=(-1)^{n-1}(n-1)!$. 
+Kao rezultat, dobijamo da je Tejlorov polinom %reda $n$
+funkcije 
+$f$ u tachki $a$ sledeћeg oblika
+\begin{align*}
+    T_{n}(x,a)
+    =
+    \sum_{k=0}^{n}\frac{(-1)^{k-1}(x-1)^{k}}{k}. 
+\end{align*}
+\end{pri}
+
+
+\section{Rolova i Koshijeva teorema}
+
+ U analizi Tejlorovog reziduala i njegovih osobina, 
+ koriste se Rolova i Koshijeva teorema. 
+ U ovom odeljku, formulisaћemo i dokazati ove 
+ teoreme. 
+ 
+ \begin{thm}[Rolova Teorema]\label{thm1}
+ Neka su $a$ i $b$ realni brojevi za koje vazhi $a<b$. 
+ Neka je $f:[a,b]\rightarrow\mathbb{R}$ funkcija 
+ koja ispunjava sledeћe uslove: 
+ \\
+ (a) $f(a)=f(b)$. 
+ \\
+ (b) $f$ je neprekidna na intervalu $[a,b]$.
+ \\
+ (v) $f$ je diferencijabilna na intervalu 
+ $(a,b)$. 
+ \\
+ Pod ovim uslovima, 
+ postoji realni broj $c\in(a,b)$ tako da je $f'(c)=0$. 
+ \end{thm}
+ 
+ \begin{dokaz}
+ Na osnovu Vajeshtrasove teoreme o ogranichenosti
+ \cite[Teorema 14, Glava 5]{kadelburg1}, 
+ postoje realni brojevi $\alpha$ i $\beta$ sadrzhani u 
+ intervalu $[a,b]$ tako da je 
+ \begin{align}\label{t1.1}
+     f(\alpha)=\min_{x\in[a,b]}f(x), 
+     \;\;\;\;\; 
+     f(\beta)=\max_{x\in[a,b]}f(x). 
+ \end{align}
+ Kao neposrednu posledicu, dobijamo nejednakost
+ \begin{align}\label{t1.3}
+     f(\alpha)\leq f(x)\leq f(\beta)
+ \end{align}
+ za svako $x\in[a,b]$. 
+ Iz (\ref{t1.3}) sledi $f(\alpha)\leq f(a)\leq f(\beta)$. 
+ To za posledicu ima da 
+ $a$, $\alpha$ i $\beta$ uvek ispunjavaju jedan od 
+ sluchajeva $f(a)=f(\alpha)=f(\beta)$, $f(a)>f(\alpha)$ i 
+ $f(a)<f(\beta)$. 
+ U nastavku dokaza, ove sluchajeve odvojeno razmatramo. 
+ \\
+ {\bf\em Slucaj 1: $f(a)=f(\alpha)=f(\beta)$. }
+ Koristeћi (\ref{t1.3}), zakljuchujemo da je 
+ $f(x)=f(a)$ za svako $x\in[a,b]$. 
+ Onda uslov (v) daje $f'(x)=0$ za svako $x\in(a,b)$. 
+ To za posledicu ima da je $c\in(a,b)$ i $f'(c)=0$ za c=(a+b)/2. 
+ \\
+ {\bf\em Slucaj 2: $f(a)>f(\alpha)$. }
+ Koristeћi uslov (a), zakljuchujemo da je $\alpha\in(a,b)$. 
+ Istovremeno, (\ref{t1.3}) daje 
+ \begin{align}\label{t1.5}
+     \frac{f(\alpha+\delta)-f(\alpha)}{\delta}
+     \leq 0, 
+     \;\;\;\;\; 
+     \frac{f(\alpha+\varepsilon)-f(\alpha)}{\varepsilon}
+     \geq 0
+ \end{align}
+ za svako $\delta\in(a-\alpha,0)$ i $\varepsilon\in(0,b-\alpha)$. 
+ Kombinujuћi uslov (v) i (\ref{t1.5}), zakljuchujemo 
+ \begin{align*}
+     f'(\alpha)
+     =
+     \lim_{h\rightarrow 0-}
+     \frac{f(\alpha+h)-f(\alpha)}{h}
+     \leq 0, 
+     \;\;\;\;\; 
+     f'(\alpha)
+     =
+     \lim_{h\rightarrow 0+}
+     \frac{f(\alpha+h)-f(\alpha)}{h}
+     \geq 0. 
+ \end{align*}
+ Kao neposrednu posledicu dobijamo $c\in(a,b)$ i $f'(c)=0$
+ za $c=\alpha$. 
+ \\
+ {\bf\em Sluchaj 3: $f(a)<f(\beta)$. }
+ Koristeћi uslov (a), zakljuchujemo da je $\beta\in(a,b)$. 
+ Istovremeno, (\ref{t1.3}) daje 
+ \begin{align}\label{t1.7}
+     \frac{f(\beta+\delta)-f(\beta)}{\delta}
+     \geq 0, 
+     \;\;\;\;\; 
+     \frac{f(\beta+\varepsilon)-f(\beta)}{\varepsilon}
+     \leq 0
+ \end{align}
+ za svako $\delta\in(a-\beta,0)$ i $\varepsilon\in(0,b-\beta)$. 
+ Kombinujuћi uslov (v) i (\ref{t1.5}), zakljuchujemo 
+ \begin{align*}
+     f'(\beta)
+     =
+     \lim_{h\rightarrow 0-}
+     \frac{f(\beta+h)-f(\beta)}{h}
+     \geq 0, 
+     \;\;\;\;\; 
+     f'(\beta)
+     =
+     \lim_{h\rightarrow 0+}
+     \frac{f(\beta+h)-f(\beta)}{h}
+     \leq 0. 
+ \end{align*}
+ Kao neposrednu posledicu dobijamo $c\in(a,b)$ i $f'(c)=0$
+ za $c=\beta$. 
+ \end{dokaz}
+ 
+ 
+ \begin{thm}[Koshijeva Teorema]\label{thm2}
+ Neka su $a$ i $b$ realni brojevi za koje vazhi $a<b$. 
+ Neka su $f,g:[a,b]\rightarrow\mathbb{R}$ funkcije 
+ koja ispunjavaju sledeћe uslove: 
+ \\
+ (a) $f$ i $g$ su neprekidne na intervalu $[a,b]$.
+ \\
+ (b) $f$ i $g$ su diferencijabilne na intervalu 
+ $(a,b)$. 
+ \\
+ (v) $g'(x)\neq 0$ za svako $x\in(a,b)$. 
+ \\
+ Pod ovim uslovima, 
+ postoji realni broj $c\in(a,b)$ tako da je 
+ \begin{align}\label{t2.1*}
+     \frac{f(b)-f(a)}{g(b)-g(a)}
+     =
+     \frac{f'(c)}{g'(c)}. 
+ \end{align}
+ \end{thm}
+ 
+ \begin{nap}
+ Koristeћi Rolovu teoremu i uslov (v), 
+ zakljuchujemo da je $g(a)\neq g(b)$. 
+ Naime, iz $g(a)=g(b)$ i Rolove teoreme direktno sledi 
+ da je $g'(x)=0$ za neko $x\in(a,b)$ (a sto je nemoguћe zbog uslova (v)). 
+ \end{nap}
+ 
+ \begin{dokaz}
+ Neka je $h:[a,b]\rightarrow\mathbb{R}$ funkcija sledeћeg oblika
+ \begin{align}\label{t2.1}
+     h(x)
+     =
+     f(x)
+     -
+     \frac{f(b)-f(a)}{g(b)-g(a)}g(x), 
+     \;\;\;\;\; x\in[a,b]. 
+ \end{align}
+ Kao direktnu posledicu (\ref{t2.1}), dobijamo  
+ \begin{align*}
+     h(a)=h(b)
+     =
+     \frac{f(a)g(b)-f(b)g(a)}{g(b)-g(a)}. 
+ \end{align*}
+ Istovremeno, iz uslova (v) i (\ref{t2.1})
+ proizilazi da je funkcija $h$ diferencijabilna na intervalu
+ intervalu $(a,b)$. 
+ Onda, primenjujuћi Rolovu teoremu na funkciju $h$, 
+ zakljuchujemo da postoji $c\in(a,b)$ tako da je 
+ $h'(c)=0$. 
+ Iz uslova $h'(c)=0$ sledi 
+ \begin{align*}
+    f(c)
+     -
+     \frac{f(b)-f(a)}{g(b)-g(a)}g(c)
+     =0, 
+\end{align*}
+a sto za direktnu posledicu ima (\ref{t2.1*}). 
+ \end{dokaz}
+ 
+ \subsection{Lagranzhov i Koshijev oblik Tejlorovog reziduala}
+ 
+ U ovom odeljku, 
+ pokazujemo da se Tejlorov rezidual mozhe predstaviti u 
+ Lagranzhovom i Koshijevom obliku. 
+ 
+ \begin{thm}\label{thm3}
+ Neka su $a$ i $x$ realni brojevi za koje vazhi $a<x$. 
+ Neka je $f:[a,x]\rightarrow\mathbb{R}$ funkcija 
+ koja ispunjava sledeћe uslove: 
+ \\
+ (a) $f$ je $n$ puta diferencijabilna na intervalu 
+ $[a,x]$. 
+ \\
+(b) $f^{(1)},\dots,f^{(n)}$ su neprekidni na intervalu 
+ $[a,x]$. 
+ \\
+ (v) $f^{(n+1)}$ postoji na intervalu $(a,x)$.
+ \\
+ Pod ovim uslovima, postoje realni brojevi $u$ i $v$
+ sadrzhani u intervalu $(a,x)$ tako da je 
+ \begin{align}
+    \label{t3.1*}
+     R_{n}(x,a)
+     =&
+     \frac{f^{(n+1)}(u)}{(n+1)!}(x-a)^{n+1}, 
+     \\
+     \label{t3.3*}
+     R_{n}(x,a)
+     =&
+     \frac{f^{(n+1)}(v)}{(n+1)!}(x-v)^{n}(x-a). 
+ \end{align}
+ \end{thm}
+ 
+ \begin{nap}
+ U matematichkoj analizi, jedancina (\ref{t3.1*}) je poznata 
+ kao Lagranzhov oblik Tejlorovog reziduala, 
+ dok Koshijev oblik istog reziduala dat u jednachini (\ref{t3.3*}). 
+ U korolaru Teoreme \ref{thm3}, pokazacemo 
+ da (\ref{t3.1*}) i (\ref{t3.3*}) vazhe i kada je $a>x$. 
+ \end{nap}
+ 
+ \begin{dokaz}
+ Neka je $F,G,H:[a,x]\rightarrow\mathbb{R}$ funkcije sledћceg
+ oblika 
+ \begin{align}\label{t3.1}
+     F(t)
+     =
+     \sum_{k=0}^{n}\frac{f^{(k)}(t)}{k!}(x-t)^{k}, 
+     \;\;\;\;\; 
+     G(t)=(x-t)^{n+1}, 
+     \;\;\;\;\; 
+     H(t)=t-a, 
+     \;\;\;\;\; t\in[a,x]. 
+ \end{align}
+ Iz uslova (a) -- (b) i (\ref{t3.1}), zakljuchujemo da je 
+ funkcija $F$ neprekidna na intervalu $[a,x]$ 
+ i diferencijabilna na intervalu $(a,x)$. 
+ Iz (\ref{t3.1}) takodje sledi da su funkcije $G$ i $H$ 
+ neprekidne na intervalu $[a,x]$ 
+ i diferencijabilne na intervalu $(a,x)$. 
+ Onda, koristeћi Koshijevu teoremu, 
+ zakljuchujemo da postoje realni brojevi $u$ i $v$ 
+ sadrzhani u intervalu $(a,x)$ tako da je 
+ \begin{align}\label{t3.3}
+     \frac{F(x)-F(a)}{G(x)-G(a)}
+     =
+     \frac{F'(u)}{G'(u)}, 
+     \;\;\;\;\; 
+     \frac{F(x)-F(a)}{H(x)-H(a)}
+     =
+     \frac{F'(v)}{H'(v)}. 
+ \end{align}
+ 
+ Koristeћi prvu jednachinu u (\ref{t3.1}), dobijemo 
+ \begin{align}\label{t3.5}
+    F(x)-F(a)
+    =
+    f(x)-\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^{k}
+    =
+    f(x)-T_{n}(x,a)
+    =
+    R_{n}(x,a).  
+ \end{align}
+ Iz iste jednachine, takodje dobijamo 
+ \begin{align}\label{t3.7}
+    F'(t)
+    =&
+    \sum_{k=0}^{n}
+    \left(
+    \frac{f^{(k+1)}(t)}{k!}(x-t)^{k}
+    -
+     \frac{f^{(k)}(t)}{k!}k(x-t)^{k-1}
+    \right)
+    \nonumber\\
+    =&
+    \sum_{k=0}^{n}
+    \frac{f^{(k+1)}(t)}{k!}(x-t)^{k}
+    -
+    \sum_{k=1}^{n}
+     \frac{f^{(k)}(t)}{(k-1)!}(x-t)^{k-1}
+     \nonumber\\
+     =&
+     \frac{f^{(n+1)}(t)}{n!}(x-t)^{n}
+ \end{align}
+ za $t\in(a,x)$. 
+ Istovremeno, iz druge jednachine 
+ u (\ref{t3.1}) sledi  
+ \begin{align}\label{t3.9}
+    G(x)-G(a)=-(x-a)^{n+1}, 
+    \;\;\;\;\; 
+    G'(t)=-(n+1)(x-t)^{n},  
+ \end{align}
+ gde je $t\in(a,x)$. 
+ Na slichan nachin, treћa jednachina u (\ref{t3.1}) daje 
+ \begin{align}\label{t3.11}
+     H(x)-H(a)=x-a, 
+     \;\;\;\;\; 
+     H'(t)=1, 
+ \end{align}
+ gde je $t\in(a,x)$. 
+ 
+ Koristeћi (\ref{t3.5}), (\ref{t3.7}), (\ref{t3.9}) 
+ i prvu jednachinu u (\ref{t3.3}), zakljuchujemo 
+ \begin{align*}
+     R_{n}(x,a)
+     =
+     F(x)-F(a)
+     =
+     \frac{F'(u)}{G'(u)}(G(x)-G(a))
+     =
+     \frac{f^{n+1}(u)}{(n+1)!}(x-a)^{n+1}. 
+ \end{align*}
+ Na slichan nachin, (\ref{t3.5}), (\ref{t3.7}), (\ref{t3.11}) 
+ i druga jednachina u (\ref{t3.3}) daje  
+ \begin{align*}
+     R_{n}(x,a)
+     =
+     F(x)-F(a)
+     =
+     \frac{F'(v)}{H'(v)}(H(x)-H(a))
+     =
+     \frac{f^{n+1}(v)}{n!}(x-v)^{n}(x-a). 
+ \end{align*}
+ \end{dokaz}
+ 
+ \begin{cor}\label{cor1}
+ Neka su $a$ i $x$ realni brojevi za koje vazi $a>x$. 
+ Neka je $f:[x,a]\rightarrow\mathbb{R}$ funkcija 
+ koja ispunjava sledeћe uslove: 
+ \\
+ (a) $f$ je $n$ puta diferencijabilna na intervalu 
+ $[x,a]$. 
+ \\
+(b) $f^{(1)},\dots,f^{(n)}$ su neprekidni na intervalu 
+ $[x,a]$. 
+ \\
+ (v) $f^{(n+1)}$ postoji na intervalu $(x,a)$.
+ \\
+ Pod ovim uslovima, postoje realni brojevi $u$ i $v$
+ sadrzhani u intervalu $(x,a)$ tako da
+ (\ref{t3.1*}) i (\ref{t3.3*}) vaze. 
+ \end{cor}
+ 
+ \begin{dokaz}
+ Neka je $\tilde{a}=-a$ i $\tilde{x}=-x$, 
+ dok je $\tilde{f}:[\tilde{a},\tilde{x}]\rightarrow\mathbb{R}$ 
+ funkcija oblika $\tilde{f}(t)=f(-t)$ za $t\in[a,b]$. 
+ Onda, koristeћi uslove (a) -- (v), 
+ zakljuchujemo da realni brojevi $\tilde{a}$, $\tilde{x}$
+ i funkcija $\tilde{f}$ zadovoljavaju sve uslove 
+ Teoreme \ref{t3.1}. 
+ Ovo za posledicu ima da postoje realni brojevi 
+ $\tilde{u}$ i $\tilde{v}$ sadrzhani u $(\tilde{a},\tilde{x})$
+ tako da je 
+ \begin{align*}
+     \tilde{f}(\tilde{x})
+     -
+     \sum_{k=0}^{n}
+     \frac{\tilde{f}^{(k)}(\tilde{a})}{k!}
+     (\tilde{x}-\tilde{a})^{k}
+     =&
+     \frac{\tilde{f}^{n+1}(\tilde{u})}{(n+1)!}
+     (\tilde{x}-\tilde{a})^{n+1}, 
+     \\
+     \tilde{f}(\tilde{x})
+     -
+     \sum_{k=0}^{n}
+     \frac{\tilde{f}^{(k)}(\tilde{a})}{k!}
+     (\tilde{x}-\tilde{a})^{k}
+     =&
+     \frac{\tilde{f}^{n+1}(\tilde{v})}{(n+1)!}
+     (\tilde{v}-\tilde{a})^{n}(\tilde{x}-\tilde{a}). 
+ \end{align*}
+ 
+ Neka je $u=-\tilde{u}$ i $v=-\tilde{v}$. 
+ Lako se onda zakljuchuje da su $u$ i $v$ sadrzhani u $(x,a)$
+ i da ispunjavaju (\ref{t3.1}), (\ref{t3.3}). 
+ \end{dokaz}
+ 
+ 
+ \section{Tejlorova teorema}
+ 
+ U ovom odeljku razmatramo asimptotsko ponasanje 
+ Tejlorovog reziduala kada njegov prvi argument 
+ tezhi drugom argumentu. 
+ Odgovor na ovaj problem daje Tejlorova teorema. 
+ 
+ \begin{thm}[Tejlorova Teorema]\label{thm4}
+ Neka su $a$ i $b$ realni brojevi za koje vazhi $a<b$. 
+ Neka je $f:[a,b)\rightarrow\mathbb{R}$ funkcija 
+ koja ispunjava sledeћe uslove: 
+ \\
+ (a) $f$ je $n$ puta diferencijabilna na intervalu 
+ $[a,b)$. 
+ \\
+(b) $f^{(1)},\dots,f^{(n)}$ su neprekidni na intervalu 
+ $[a,b)$. 
+ \\
+ Pod ovim uslovima imamo da je 
+ $R_{n}(x,a)=o\left((x-a)^{n}\right)$ kada $x\rightarrow a$, 
+ tj., 
+ \begin{align}
+     \lim_{x\rightarrow a}
+     \frac{R_{n}(x,a)}{(x-a)^{n}}=0. 
+ \end{align}
+ \end{thm}
+ 
+ \begin{dokaz}
+Na osnovu Teoreme \ref{thm3}, za svaki realni broj 
+$x\in[a,b)$ postoji realni broj $u=u(x)\in(a,x)$ 
+tako da je 
+\begin{align}
+    R_{n-1}(x,a)
+    =
+    \frac{f^{(n)}(u)}{(n)!}(x-a)^{n}. 
+\end{align}
+Za neposrednu posledicu imamo da 
+$u=u(x)\rightarrow a$ kada $x\rightarrow a$. 
+Takodje imamo 
+\begin{align}
+    \frac{R_{n}(x,a)}{(x-a)^{n}}
+    =
+    \frac{1}{(x-a)^{n}}
+    \left(
+    R_{n-1}(x,a)
+    -
+    \frac{f^{(n)}(a)}{n!}(x-a)^{n}
+    \right)
+    =
+    \frac{f^{(n)}(u)-f^{(n)}(a)}{n!}. 
+\end{align}
+Kako je $f^{(n)}$ neprekidna na $[a,b)$, dobijamo 
+\begin{align*}
+    \lim_{x\rightarrow a}
+    \frac{R_{n}(x,a)}{(x-a)^{n}}
+    =
+    \lim_{u\rightarrow a}
+    \frac{f^{(n)}(u)-f^{(n)}(a)}{n!}
+    =0. 
+\end{align*}
+\end{dokaz}
+
+
+\section{Tejlorov red}
+
+U matematichkoj analizi, 
+znachajnu ulogu igraju funkcije koje su beskonachno 
+mnogo puta 
+diferencijabilne, tj. koje imaju sve izvode visheg reda. 
+Takve funcije se nazivaju glatke funkcije. 
+Jedna od osnovnih osobina glatkih funkcija je 
+da imaju Tejlorov polinom bilo kog reda. 
+U tom sluchaju, prirodno se nameћe pitanje 
+da li Tejlorov polinom konvergira, i ako konvergira, 
+pod kojim uslovima i kojoj granichnoj vrednosti. 
+Odgovor na ovo pitanje bazirano je na pojmu 
+Tejlorovog reda. 
+
+\begin{defi}[Tejlorov red]
+Neka je $f:\mathbb{R}\rightarrow\mathbb{R}$ funkcija 
+koja je beskonachno mnogo puta diferencijabilna u 
+tachki $a$. 
+Tejlorov red funkcije $f$ u tachki $a$ je red 
+sledeћeg oblika
+\begin{align*}
+    T_{\infty}(x,a)
+    =
+    \sum_{k=0}^{\infty}
+    \frac{f^{(k)}(a)}{k!}(x-a)^{k}, 
+    \;\;\;\;\; x\in\mathbb{R}. 
+\end{align*}
+\end{defi}
+
+Neke od osnovnih osobina 
+Tejlorovog reda sadrzhane su u sledeћoj teoremi. 
+
+\begin{thm}\label{thm5}
+Neka je $a$ realan broj, 
+dok je $f:\mathbb{R}\rightarrow\mathbb{R}$ funkcija koja 
+ispunjava sledeћe uslove: 
+\\
+(a) Postoji positivan realan broj $r$
+tako da je $f$ beskonachno mnogo puta differencijabilna 
+na intervalu $(a-r,a+r)$. 
+\\
+(b) Postoji pozitivan realan broj $C$ 
+tako da je 
+$|f^{(n)}(x)|\leq C^{n}n!$ za svako 
+$x\in(a-r,a+r)$ i $n\geq 0$. 
+\\
+Pod ovim uslovima, 
+Tejlorov red $T_{\infty}(x,a)$ je apsolutno kovergentan 
+za svako $x\in(a-\rho,a+\rho)$, 
+gde je $\rho=\min\{r,1/C\}$. 
+Pod istim uslovima, imamo i da je 
+\begin{align}
+    f(x)=T_{\infty}(x,a)
+    =
+    \lim_{n\rightarrow\infty}T_{n}(x,a), 
+    \;\;\;\;\; 
+    |f(x)-T_{n}(x,a)|
+    \leq 
+    (C\rho)^{n+1}
+\end{align}
+za svako $x\in(x-\rho,x+\rho)$. 
+\end{thm}
+
+\begin{dokaz}
+Neka je $x$ bilo koji realni broj u intervalu 
+$(a-\rho,a+\rho)$. 
+Kako je $\rho<r$ i $C\rho<1$, uslov (b) daje 
+\begin{align*}
+    \sum_{n=0}^{\infty}
+    \frac{|f^{(n)}(a)|}{n!}|x-a|^{n}
+    \leq 
+    \sum_{n=0}^{\infty}
+    (C\rho)^{n}
+    =
+    \frac{1}{1-Cr}<\infty. 
+\end{align*}
+To za posledicu ima da je 
+Tejlorov red $T_{\infty}(x,a)$ apsolutno 
+kovergentan i da limit 
+$\lim_{n\rightarrow\infty}T_{n}(x,a)=T_{\infty}(x,a)$
+vazhi. 
+Istovremeno, na osnovu Teoreme \ref{thm3} i Korolara \ref{cor1}, 
+za svako $n\geq 0$ postoji realna broj 
+$u_{n}\in(a-r,a+r)$ tako da je 
+\begin{align}\label{t5.1}
+    R_{n}(x,a)
+    =
+    \frac{f^{(n+1)}(u_{n})}{(n+1)!}(x-a)^{n+1}. 
+\end{align}
+Koristeћi uslov (b) i (\ref{t5.1}), dobijamo 
+\begin{align*}
+    |f(x)-T_{n}(x,a)|
+    =
+    |R_{n}(x,a)|
+    \leq 
+    \frac{|f^{(n+1)}(u_{n})|}{(n+1)!}|x-a|^{n+1}
+    \leq 
+    (C\rho)^{n+1}. 
+\end{align*}
+Kako je $\lim_{n\rightarrow\infty}(C\rho)^{n}=0$, 
+zakljuchujemo da je $f(x)=\lim_{n\rightarrow\infty}T_{n}(x,a)$. 
+Kao neposrednu posledicu, dobijamo $f(x)=T_{\infty}(x,a)$. 
+\end{dokaz}
+
+\begin{pri}
+Neka je $f(x)=\exp(x)$ i $a=0$. 
+Kako je $f^{(n)}(a)=1$,  
+Tejlorov red 
+funkcije $f$ u tachki $a$ je sledeћeg oblika
+\begin{align*}
+    T_{\infty}(x,a)
+    =
+    \sum_{k=0}^{\infty}\frac{x^{k}}{k!}. 
+\end{align*}
+Istovremeno, imamo da je su izvodi $|f^{(n)}(x)|$ 
+nezavisni od $n$. 
+Onda, koristeћi Teoremu \ref{thm5}, 
+zakljuchujemo da je $T_{\infty}(x,a)$ apsolutno konvergentan
+za svako $x\in\mathbb{R}$
+i da $f(x)=T_{\infty}(x,a)$ vazhi za isto $x$. 
+\end{pri}
+
+\begin{pri}
+Neka je $f(x)=\cos(x)$ i $a=0$. 
+Kako je $f^{(2n)}(a)=(-1)^{n}$
+i $f^{(2n+1)}(a)=0$,  
+Tejlorov red 
+funkcije $f$ u tachki $a$ je sledeћeg oblika
+\begin{align*}
+    T_{\infty}(x,a)
+     =
+    \sum_{k=0}^{\infty}\frac{(-1)^{k}x^{2k}}{(2k)!}. 
+\end{align*}
+Istovremeno, imamo da je $|f^{(n)}(x)|\leq 1$ 
+za svako $x\in\mathbb{R}$. 
+Onda, koristeћi Teoremu \ref{thm5}, 
+zakljuchujemo da je $T_{\infty}(x,a)$ apsolutno konvergentan
+za svako $x\in\mathbb{R}$
+i da $f(x)=T_{\infty}(x,a)$ vazhi za isto $x$. 
+\end{pri}
+
+\begin{pri}
+Neka je $f(x)=\ln(x)$ i $a=1$. 
+Kako je $f^{(n)}(a)=(-1)^{n-1}(n-1)!$, 
+Tejlorov red
+funkcije $f$ u tachki $a$ je sledeћeg oblika
+\begin{align*}
+    T_{\infty}(x,a)
+    =
+    \sum_{k=0}^{\infty}\frac{(-1)^{k-1}(x-1)^{k}}{k}. 
+\end{align*}
+Istovremeno, imamo da je $|f^{(n)}(x)|\leq (n-1)!/(1-r)^{n}$ 
+za svako $x\in(1-r,1+r)$ i za svako $r\in(0,1)$. 
+Onda, koristeћi Teoremu \ref{thm5}, 
+zakljuchujemo da je $T_{\infty}(x,a)$ apsolutno konvergentan
+za svako $x\in(0,2)$
+i da $f(x)=T_{\infty}(x,a)$ vazhi za isto $x$. 
+\end{pri}
+
+\begin{thebibliography}{10}
+
+\bibitem{kadelburg1}
+Zoran Kadelburg, Vladimir Miћiћ, Srdjan Ognjanoviћ 
+i Sonja Chukiћ,  
+{\em Analiza sa Algebrom, Udџbenik sa zbirkom zadataka za 3. razred Matematichke gimnazije,}
+Krug, Beograd, 2018. 
+\cyr
+\bibitem{kadelburg2}
+Zoran Kadelburg, Vladimir Miћiћ и Srdjan Ognjanoviћ ,  
+{\em Analiza sa Algebrom, Udџbenik sa zbirkom zadataka za 4. razred Matematichke gimnazije,}
+Krug, Beograd, 2016. 
+\end{thebibliography}
+
+\end{document}
