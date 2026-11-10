@@ -1,47 +1,74 @@
-# Mathematics Projects from High School
+# Secondary-School Mathematics Seminar Papers
 
-This repository contains two seminar papers I wrote while attending the Mathematical Grammar School in Belgrade. The papers are written in Serbian and focus on foundational topics in mathematical analysis. Both the original LaTeX source files and compiled PDF versions are included.
+## Overview and academic context
 
-## Projects
+This repository contains two seminar papers written in Serbian while I attended the Mathematical Grammar School in Belgrade. They are **secondary-school academic work**, not peer-reviewed publications or original research papers.
 
-### Sequence Convergence
+The repository preserves both the LaTeX source and compiled PDF for each paper. The work demonstrates early engagement with proof-based mathematical analysis, formal definitions and technical typesetting.
 
-An introduction to real sequences and their asymptotic behaviour, including:
+## Papers
 
-- bounded and monotone sequences;
-- convergence and limits;
-- divergent and zero sequences;
-- fundamental properties of convergent sequences, with proofs and examples.
+### Convergence of Sequences
 
-- [Read the PDF](sequence-convergence/sequence-convergence.pdf)
-- [View the LaTeX source](sequence-convergence/main.tex)
+The paper introduces real sequences and develops:
+
+- boundedness and monotonicity;
+- epsilon-based definitions of limits and convergence;
+- divergent and null sequences;
+- algebraic and asymptotic properties of convergent sequences;
+- theorem-proof and worked-example presentation.
+
+- [Compiled paper (Serbian)](sequence-convergence/sequence-convergence.pdf)
+- [LaTeX source](sequence-convergence/main.tex)
 
 ### Taylor's Formula and Taylor Series
 
-A study of polynomial approximation and Taylor expansions, including:
+The paper studies polynomial approximation through:
 
 - Taylor polynomials and remainders;
 - Rolle's theorem and Cauchy's mean value theorem;
-- Lagrange and Cauchy forms of the remainder;
+- Lagrange and Cauchy remainder forms;
 - Taylor's theorem and Taylor series;
-- examples involving the exponential, cosine, and logarithm functions.
+- examples for exponential, cosine and logarithmic functions.
 
-- [Read the PDF](taylor-formula-and-series/taylor-formula-and-series.pdf)
-- [View the LaTeX source](taylor-formula-and-series/main.tex)
+- [Compiled paper (Serbian)](taylor-formula-and-series/taylor-formula-and-series.pdf)
+- [LaTeX source](taylor-formula-and-series/main.tex)
 
-## Building the Documents
+## Sources and language
 
-Each paper can be compiled from its project directory with a standard LaTeX installation:
+Both papers are written in Serbian and include bibliographic references in their source files. Mathematical terminology in this README is translated for accessibility; the papers themselves remain in their original language.
+
+## Building the documents
+
+From either paper directory, with a LaTeX distribution that provides the declared Serbian/Cyrillic language and font packages:
 
 ```bash
 pdflatex main.tex
 pdflatex main.tex
 ```
 
-Running the command twice resolves cross-references. The source uses Serbian language and Cyrillic font support provided by the LaTeX packages declared in each document.
+The second pass resolves cross-references. Compilation could not be independently repeated during this audit because a LaTeX distribution was unavailable; the committed PDFs are therefore the immediately reproducible reading artefacts.
+
+## Repository structure
+
+```text
+sequence-convergence/
+  main.tex
+  sequence-convergence.pdf
+taylor-formula-and-series/
+  main.tex
+  taylor-formula-and-series.pdf
+```
+
+## Limitations
+
+- The papers reflect secondary-school coursework and should be evaluated in that context.
+- They have not been translated into English or independently peer reviewed.
+- The repository does not claim novelty beyond the exposition, proofs and examples assembled for the seminar assignments.
 
 ## Author
 
 Milica V. Tadić  
 Mathematical Grammar School, Belgrade
+
 
