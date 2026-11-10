@@ -1,0 +1,1065 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[OT1, OT2]{fontenc}
+\usepackage[english,serbian]{babel}
+\usepackage{paralist}
+\usepackage{algorithm}
+\usepackage{titlesec}
+
+\topmargin       -11.0mm
+\oddsidemargin      0mm
+\evensidemargin     0mm
+\textheight     235.5mm
+\textwidth      161.0mm
+\columnsep        4.1mm
+\parindent        1.0em
+\headsep          6.3mm
+\headheight        12pt
+\lineskip           1pt
+\normallineskip     1pt
+\def\baselinestretch{1.0}
+
+\newcommand{\lN}{\mathbb{N}}
+\newcommand{\lR}{\mathbb{R}}
+
+\newtheorem{thm}{Teorema}[section]
+\renewcommand{\thethm}{\arabic{section}.\arabic{thm}}
+
+\newtheorem{tvr}[thm]{Tvrdjenje}
+
+\newtheorem{posl}[thm]{Posledica}
+
+\newtheorem{defi}{Definicija}[section]
+\renewcommand{\thedefi}{\arabic{section}.\arabic{defi}}
+
+\newtheorem*{nap}{Napomena}
+
+\newtheorem{lem}{Lema}[subsection]
+
+\newtheorem{pri}{Primer}[section]
+\renewcommand{\thepri}{\arabic{section}.\arabic{pri}}
+
+\newtheorem{zad}{Zadatak}
+
+\newtheorem*{dokaz}{Dokaz}
+%\renewcommand{\thedokaz}{}
+
+\newcommand{\cyr}{\fontencoding{OT2}\selectfont\selectlanguage{serbian}}
+\newcommand{\lat}{\fontencoding{T1}\selectfont\selectlanguage{english}}
+
+\newtheorem{assumption}{Assumption}[section]
+\renewcommand{\theassumption}{\arabic{section}.\arabic{assumption}}
+
+\newtheorem{theorem}{Theorem}[section]
+\renewcommand{\thetheorem}{\arabic{section}.\arabic{theorem}}
+
+\newtheorem{lemma}{Lemma}[section]
+\renewcommand{\thelemma}{\arabic{section}.\arabic{lemma}}
+
+\newtheorem{corollary}{Corollary}[section]
+\renewcommand{\thecorollary}{\arabic{section}.\arabic{corollary}}
+
+\newtheorem{proposition}{Proposition}[section]
+\renewcommand{\theproposition}{\arabic{section}.\arabic{proposition}}
+
+\newcounter{appendixcounter}
+
+\newtheorem{theoremappendix}{Theorem}
+\renewcommand{\thetheoremappendix}{A\arabic{appendixcounter}.\arabic{theoremappendix}}
+
+%\newtheorem{lemmaappendix}{Lemma}
+%\renewcommand{\thelemmaappendix}{A\arabic{appendixcounter}.\arabic{lemmaappendix}}
+
+\newtheorem{lemmaappendix}{Lemma}
+\renewcommand{\thelemmaappendix}{A.\arabic{lemmaappendix}}
+
+\newtheorem{assumptionappendix}{Assumption}[appendixcounter]
+\renewcommand{\theassumptionappendix}{A\arabic{appendixcounter}.\arabic{assumptionappendix}}
+
+
+\newtheorem*{remark}{Remark}%[section]
+%\renewcommand{\theremark}{\arabic{section}.\arabic{remark}} 
+
+
+\newtheorem{step}{Step}%[section]
+\renewcommand{\thestep}{\arabic{step}} 
+
+\titleformat{\section}[hang]{\bf\Large}{\thesection.}{0.4em}{}
+\titleformat{\subsection}[hang]{\bf\large}{\thesubsection.}{0.4em}{}
+
+\renewcommand{\baselinestretch}{1.01}
+
+\begin{document}
+
+\title{Konvergencija nizova} 
+
+\author{Milica V. Tadiћ
+\thanks{Matamatichka Gimnazija, Kraljice Natalije 37, Beograd  }}
+
+\date{}
+
+\maketitle
+
+
+\section{Uvod} \label{section0}
+
+ U ovom seminarskom radu razmatramo nizove u skupu realnih brojeva i njihove osnovne asimpto\cyr{t}\cyr{s}ke osobine. 
+ Fokus rada je na konceptu konvergencije i 
+ granichne vrednosti niza realnih brojeva. 
+ Seminarski rad obuhvata osnovne osobine kovergentnih nizova i njihovih granichnih vrednosti. 
+ Veћина особина (razmatranih u radu) 
+ potkrepljena je dokazima i ilustrovana primerima. 
+ 
+ Seminarski rad je organizivan na sledeћи nachin. 
+ U odeljku \ref{section1}, definishemo  nizove u skupu realnih brojeva i razmatramo njihove osnovne algebarske osobine. 
+ Koncept konvergencije i granichne vrednosti niza realnih brojeva definishemo u odeljku \ref{section2}. 
+ Srodni koncepti (kao shto su odredjeno divergentni i nula-nizovi) takodje se definishu u odeljku \ref{section2}. 
+ %U odeljaku \ref{section3}, razmaramo osnovna 
+ %asimpto\cyr{t}\cyr{s}ka svojstva nizova realnih brojeva. 
+ %U odeljku \ref{section4}, 
+%data su dva (netrivijana) primera primene rezultata razmatranih u 
+%odeljcima \ref{section2} i \ref{section3}. 
+ 
+\section{Nizovi u skupu realnih brojeva} \label{section1}
+
+Niz realnih brojeva je jedan od najvazhnijih pojmova 
+u matematichkoj analizi i algebri. 
+Niz realnih brojeva mozhemo zamisliti kao vektor sa beskonachno 
+mnogo elemenata, 
+odnosno kao pravilo koje svakom prirodnom broju $n$
+pridzhuje realan broj $a_n$. 
+U tom sluchaju, realan broj $a_n$ prestavlja $n$-ti chlan niza, 
+a niz prikazujemo ovako:
+$(a_n)_{n\in\mathbb{N}}$ 
+(ili $\{a_n\}_{n\geq 1}$). 
+Niz realnih brojeva i njegovi chlanovi se definishu 
+na sledeћi nachin: 
+
+\begin{defi}
+\textbf{Niz realnih brojeva} je preslikavanje skupa $\mathbb{N}$  
+u skup $\mathbb{R}$. 
+Vrednost ovog preslikavanja za $n\in\mathbb{N}$ je $n$-ti 
+chlan niza. 
+\end{defi}
+
+U matematichoj analizi, znachajnu ulogu imaju ogranicheni i 
+monotoni nizovi. Ove nizove definishemo na 
+sledeћi nachin: 
+
+\begin{defi}
+Neka je $(a_n)_{n\in\mathbb{N}}$ niz realnih brojeva.  
+
+(a) $(a_n)_{n\in\mathbb{N}}$ je \textbf{ogranichen odozgo} ako postoji realan broj $b$ takav da je $a_n\leq b $ za sve $n \in \lN$.
+
+(b) $(a_n)_{n\in\mathbb{N}}$ je \textbf{ogranichen odozdo} ako postoji realan broj $c$ takav da je $a_n \geq c $ za sve $n \in \lN$.
+
+(v) $(a_n)_{n\in\mathbb{N}}$ je \textbf{ogranichen} ako je ogranichen odozdo i odozgo, tj. ako postoje realni brojevi $b$ i $c$ takvi da je $c \leq a_n \leq b$ za svako $n \in \lN$.
+\end{defi}
+
+\begin{defi}
+Neka je $(a_n)_{n\in\mathbb{N}}$ niz realnih brojeva.  
+
+(a) $(a_n)_{n\in\mathbb{N}}$ je 
+\textbf{rastuћи} ako je $a_n \leq a_{n+1}$
+za svako $n\in\mathbb{N}$. 
+
+(b)  
+Ako je $a_n < a_{n+1}$
+za svako $n\in\mathbb{N}$, onda je 
+$(a_n)_{n\in\mathbb{N}}$ 
+\textbf{strogo rastuћи}. 
+
+(v) $(a_n)_{n\in\mathbb{N}}$ je 
+\textbf{opadajuћи} ako je $a_n \geq a_{n+1}$
+za svako $n\in\mathbb{N}$. 
+
+(g)  
+Ako je $a_n > a_{n+1}$
+za svako $n\in\mathbb{N}$, onda je 
+$(a_n)_{n\in\mathbb{N}}$ 
+\textbf{strogo opadajuћи}. 
+
+(dj)
+Ako $(a_n)_{n\in\mathbb{N}}$ zadovoljava bilo koji od uslova
+(a) -- (g), onda je $(a_n)_{n\in\mathbb{N}}$ \textbf{monoton}. 
+
+(e) $(a_n)_{n\in\mathbb{N}}$ je \textbf{strogo monoton}
+ako $(a_n)_{n\in\mathbb{N}}$ zadovoljava uslov (b) ili (d). 
+\end{defi}
+
+Prethodne definicije ilustrovane su sledeћim primerima. 
+
+\begin{pri}
+Neka je $(a_n)_{n\in\mathbb{N}}$ niz realnih brojeva. 
+
+(a) $(a_n)_{n\in\mathbb{N}}$ je {\bf aritmetichki niz} 
+ako je $a_{n+1}=a_{n}+d$ za neko $d\in\mathbb{R}$ i za svako 
+$n\in\mathbb{N}$. 
+U tom sluchaju, imamo $a_n=a_1+(n-1)d$ za svako $n\in\mathbb{N}$.  
+Iz ovog sledi da je $(a_n)_{n\in\mathbb{N}}$ monotono strogo 
+rastuћi i ogranichen odozdo za $d>0$, kao i da je 
+$(a_n)_{n\in\mathbb{N}}$ monotono strogo 
+opadajuћi i ogranichen odozgo za $d<0$. 
+
+(b) $(a_n)_{n\in\mathbb{N}}$ je {\bf geometrijski niz} 
+ako je $a_{n+1}=a_{n}q$ za neko $q\in\mathbb{R}$ i za svako 
+$n\in\mathbb{N}$. 
+U tom sluchaju, imamo $a_n=a_1q^{n-1}$ za svako $n\in\mathbb{N}$.  
+Iz ovog sledi da je $(a_n)_{n\in\mathbb{N}}$ monotono strogo 
+rastuћi i ogranichen za $a_1<0$, $0<q<1$, kao i da je 
+$(a_n)_{n\in\mathbb{N}}$ monotono strogo 
+opadajuћi i ogranichen za $a_0>0$, $0<q<1$.
+Mozhe se takodje pokazati da je $(a_n)_{n\in\mathbb{N}}$ je ogranichen 
+za $|q|<1$. 
+
+(v) $(a_n)_{n\in\mathbb{N}}$ je {\bf harmonijski niz} 
+ako je $a_1=1$, $a_2=1/2$ i $a_{n+2}=2/(1/a_{n+1}+1/a_n)$ za svako 
+$n\in\mathbb{N}$. 
+U tom sluchaju, imamo $a_n=1/n$ za svako $n\in\mathbb{N}$.  
+Iz ovog sledi da je $(a_n)_{n\in\mathbb{N}}$ monotono strogo 
+opadajuћi i ogranichen. 
+\end{pri}
+
+Slichno kao u skupu realnih brojeva, 
+moguce je definisati operacije sabiranja, oduzimanja, mnozhenja i 
+deljenja za nizove relnih brojeva. 
+
+\begin{defi}
+Neka su $(a_n)_{n\in\mathbb{N}}$ i $(b_n)_{n\in\mathbb{N}}$
+nizovi realnih brojeva. 
+
+(a) $(a_n)+(b_n)$ je niz chiji je $n$-ti chlan 
+$a_n+b_n$. 
+
+(b) $(a_n)-(b_n)$ je niz chiji je $n$-ti chlan 
+$a_n-b_n$. 
+
+(v) $(a_n)\cdot(b_n)$ je niz chiji je $n$-ti chlan 
+$a_nb_n$. 
+
+(g) $(a_n)/(b_n)$ je niz chiji je $n$-ti chlan 
+$a_n/b_n$ (pod pretpostavkom da je $b_n\neq 0$). 
+
+(d) $c\cdot(a_n)$ je niz chiji je $n$-ti chlan 
+$ca_n$, gde je $c\in\mathbb{R}$. 
+\end{defi}
+
+\section{Konvergencija nizova i srodni pojmovi} \label{section2}
+
+U problemima matematichke analize,
+chesto je potrebno utvrditi da li postoji zakonitost 
+u ponashanju niza realnih brojeva kada indeks niza
+tezhi ka beskonachnosti. 
+Ispoljeno ponashanje niza realnih brojeva kada indeks tezhi  
+beskonachnosti naziva se {\bf asimpto\cyr{t}\cyr{s}kim ponashanjem}, 
+dok se odgovarajuћe osobine zovu 
+{\bf asimpto\cyr{t}\cyr{s}ke osobine}. 
+Konvergencija i granichna vrednost su najvazhnije 
+asimpto\cyr{t}\cyr{s}ke 
+osobine u matematichkoj analizi. 
+Da bih se definisale ove osobine, koristimo 
+koncept $\varepsilon$-okoline. 
+$\varepsilon$-okolina se definishe na sledeћi nachin: 
+
+ \begin{defi}
+ Neka su $a$ i $\varepsilon$ realni brojevi i neka je $\varepsilon>0$. 
+ Onda je \textbf{$\varepsilon$-okolina broja $a$} interval
+ \begin{align*}
+     U_{\varepsilon}(a) 
+     =
+     (a-\varepsilon,a+\varepsilon)
+     =
+     \{x\in\mathbb{R}: |x-a|<\varepsilon\}. 
+ \end{align*}
+ \end{defi}
+ 
+ Koristeћi $\varepsilon$-okolinu, definishemo 
+ granichnu vrednost niza. 
+ 
+ \begin{defi}
+ Neka je $(a_n)_{n\in\mathbb{N}}$ niz realnih brojeva. 
+ Realni broj $a$ je onda \textbf{granichna vrednost (ili limes)} 
+ niza $(a_n)_{n \in \lN}$ ako za svaki pozitivan realan broj $\varepsilon$ postoji prirodan broj $n_0(\varepsilon)$ takav da 
+ $a_n\in U_{\varepsilon}(a)$ za svako $n>n_{0}(\varepsilon)$, 
+ tj, ako vazhi 
+ \begin{align*}
+     (\forall\varepsilon\in(0,\infty) )
+     \; (\exists n_0(\varepsilon)\in\mathbb{N} )
+     \; (\forall n\in\mathbb{N})
+     \; (n>n_0(\varepsilon)\Rightarrow
+     |a_n-a|<\varepsilon).  
+ \end{align*}
+ Za ovo upotrebljavamo notaciju 
+ $a_n\rightarrow a$ ili $\displaystyle\lim_{n\rightarrow\infty}a_n=a$, 
+ i kazhemo da $(a_n)_{n\in\mathbb{N}}$ tezhi (konvergira) 
+ ka $a$. 
+ \end{defi}
+ 
+ Na osnovu prethodne definicije, imamo da je 
+ $\displaystyle\lim_{n\rightarrow\infty}a_n=a$ ako i samo ako 
+ za svaki (proizvoljno mali) 
+ pozitivan realan broj $\varepsilon$, 
+ $\epsilon$-okolina broja $a$ sadrzhi sve 
+ chlanove niza $(a_n)_{n\in\mathbb{N}}$, 
+ osim njih konachno mnogo. 
+ Kako $\varepsilon$-okolina broja $a$ postaje sve ,,uzha i uzha'' 
+ kada se $\varepsilon$ smanjuje i priblizhava nuli, 
+ zakljuchujemo da su $a_n$ i 
+ $a$ priblizhno isti  
+ za svaki ,,dovoljno veliki indeks $n$'', 
+ tj. $a_n\approx a$ za $n\gg 1$. 
+ To znachi da se chlanovi niza $(a_n)_{n\in\mathbb{N}}$ 
+ ,,grupishu oko $n$'' kada $n$ tezhi beskonachnosti. 
+ 
+ Koristeћi granichnu vrednost, definishemo konvergentan,  
+divergentan i nula niz. 
+ 
+\begin{defi}
+(a) Niz realnih brojeva je \textbf{konvergentan} ukoliko ima granchnu vrednost. 
+
+(b) Niz realnih brojeva je \textbf{divergentan} ako 
+nema granichnu vrednost.
+
+(v) \textbf{Nula-niz} je niz realnih brojeva chija granichna 
+vrednost je nula. 
+\end{defi}
+
+Prethodne definicije ilustrovane su sledeћim primerima
+
+\begin{pri}\label{pri3.1}
+(a) Neka $a=1$ i neka je $(a_n)_{n\in\mathbb{N}}$ niz chiji 
+je $n$-ti chlan $a_n=(n-1)/n$. 
+Lako se onda pokazuje da je $|a_n-a|=1/n$. 
+Neka je $\varepsilon$ bilo koji pozitivan realan broj, 
+dok je $n_{0}(\varepsilon)$ najmanji prirodan broj 
+veћi od $1/\varepsilon$ 
+(tj. $n_{0}(\varepsilon)=\lceil 1/\varepsilon \rceil$).
+Kako je $n_{0}(\varepsilon)\geq 1/\varepsilon$, dobijamo 
+\begin{align*}
+    n>n_{0}(\varepsilon)
+    \;\Rightarrow\; 
+    n>1/\varepsilon
+    \;\Rightarrow\;  
+    |a_n-a|=1/n<\varepsilon. 
+\end{align*}
+Koristeћi onda definiciju granichne vrednosti 
+i konvergentnog niza, 
+zakljuchujemo da je 
+$\displaystyle\lim_{n\rightarrow\infty}a_n=a=1$ i da je 
+$(a_n)_{n\in\mathbb{N}}$ konvergentan. 
+
+(b)  Neka je $a=0$ i neka je $(a_n)_{n\in\mathbb{N}}$ niz chiji 
+je $n$-ti chlan $a_n=(-1)^n/n^2$. 
+Lako se onda pokazuje da je $|a_n-a|=1/n^2$. 
+Neka je $\varepsilon$ bilo koji pozitivan realan broj, 
+dok je $n_{0}(\varepsilon)$ najmanji prirodan broj 
+veћi od $1/\sqrt{\varepsilon}$ 
+(tj. $n_{0}(\varepsilon)=\lceil 1/\sqrt{\varepsilon} \rceil$).
+Kako je $n_{0}(\varepsilon)\geq 1/\sqrt{\varepsilon}$, dobijamo 
+\begin{align*}
+    n>n_{0}(\varepsilon)
+    \;\Rightarrow\; 
+    n>1/\sqrt{\varepsilon}
+    \;\Rightarrow\;  
+    |a_n-a|=1/n^2<\varepsilon. 
+\end{align*}
+Koristeћi onda definiciju granichne vrednosti 
+i nula-niza, 
+zakljuchujemo da je 
+$\displaystyle\lim_{n\rightarrow\infty}a_n=a=0$ i da je
+$(a_n)_{n\in\mathbb{N}}$ nula niz. 
+
+(v)  Neka je $(a_n)_{n\in\mathbb{N}}$ niz chiji 
+je $n$-ti chlan $a_n=(-1)^n$. Pokazhimo da je $(a_n)_{n\in\mathbb{N}}$
+divergentan. 
+Pretpostavimo suprotno. 
+Onda postoji realan broj $a$ i za svaki pozitivan realan broj $\varepsilon$
+postoji prirodan broj $n_{0}(\varepsilon)$ tako da je 
+$|a_n-a|<\varepsilon$ za $n>n_{0}(\varepsilon)$. 
+U tom sluchaju dobijamo 
+\begin{align*}
+    &
+    a=(a-a_{2n+1} ) + a_{2n+1}
+    =-1+(a-a_{2n+1} )
+    \leq 
+    -1+|a-a_{2n+1} |
+    \leq 
+    -1/2, 
+    \\
+    &
+    a=(a-a_{2n} ) + a_{2n}
+    =1+(a-a_{2n} )
+    \geq 
+    1-|a-a_{2n} |
+    \geq 
+    1/2
+\end{align*}
+za $n>n_0(1/2)/2$. 
+Kako prethodne dve nejednakosti ne mogu da vazhe istovremeno, 
+zaklju\cyr{ch}ujemo da je $(a_n)_{n\in\mathbb{N}}$ divergentan. 
+\end{pri}
+
+Osim konvergentnih nizova, 
+u matematichkoj analizi se razmatraju i nizovi 
+koji ,,odredjeno divergiraju'', tj tezhe (konvergiraju) ka 
+$+\infty$ ili $-\infty$. 
+Ovi se nizovi definishu na sledeћi nachin. 
+
+\begin{defi}
+Neka je $(a_n)_{n\in\mathbb{N}}$ niz realnih brojeva. 
+
+(a) $(a_n)_{n\in\mathbb{N}}$ konvergira ka $+\infty$
+ako za svaki pozitivni realni broj $M$ postoji prirodan broj
+$n_{0}(M)$ tako da je 
+$a_{n}>M$ za svako $n>n_{0}(M)$, 
+tj. ako vazhi 
+\begin{align*}
+     (\forall M\in(0,\infty) )
+     \; (\exists n_0(M)\in\mathbb{N} )
+     \; (\forall n\in\mathbb{N})
+     \; (n>n_0(M)\Rightarrow
+     a_n>M).  
+ \end{align*}
+ Za ovo upotrebljavamo notaciju 
+ $a_n\rightarrow \infty$ ili
+ $\displaystyle\lim_{n\rightarrow\infty}a_n=\infty$. 
+ 
+(b) $(a_n)_{n\in\mathbb{N}}$ konvergira ka $-\infty$
+ako za svaki negativni realni broj $M$ postoji prirodan broj
+$n_{0}(M)$ tako da je 
+$a_{n}<M$ za svako $n>n_{0}(M)$, 
+tj. ako vazhi 
+\begin{align*}
+     (\forall M\in(-\infty,0) )
+     \; (\exists n_0(M)\in\mathbb{N} )
+     \; (\forall n\in\mathbb{N})
+     \; (n>n_0(M)\Rightarrow
+     a_n<M).  
+ \end{align*}
+ Za ovo upotrebljavamo notaciju 
+ $a_n\rightarrow -\infty$ ili
+ $\displaystyle\lim_{n\rightarrow\infty}a_n=-\infty$.
+\end{defi}
+
+Na osnovu prethodne definicije, 
+imamo da je $\displaystyle\lim_{n\rightarrow\infty}a_n=\infty$
+ako i samo ako je svaki (proizvoljno veliki) pozitivan broj $M$
+manji od svih chlanova niza $(a_n)_{n\in\mathbb{N}}$, 
+osim od konachno mnogo njih.  
+Kako je $M$ proizvoljno velika pozitivna velichina, 
+zakljuchujemo da je i $a_n$ proizvoljno velika vechina 
+za svaki ,,dovoljno veliki indeks $n$'', 
+tj. $a_n\gg 1$ za $n\gg 1$. 
+Na slichan nachin mozhemo protumachiti asimpto\cyr{t}\cyr{s}ku 
+osobinu 
+$\displaystyle\lim_{n\rightarrow\infty}a_n=-\infty$. 
+
+
+Sledeћi primer ilustruje odredjeno divergentne nizove. 
+
+\begin{pri}
+(a)
+Neka je $(a_n)_{n\in\mathbb{N}}$ niz chiji 
+je $n$-ti chlan $a_n=n^2$. 
+Pored toga, neka je $M$ bilo koji pozitivan realan broj, 
+dok je $n_{0}(M)$ najmanji prirodan broj veћi od 
+$\sqrt{M}$ (tj. $n_{0}(M)=\lceil \sqrt{M} \rceil$). 
+Kako je $n_{0}(M)\geq \sqrt{M}$, dobijamo 
+\begin{align*}
+    n\geq n_{0}(M)
+    \;\Rightarrow\; 
+    n>\sqrt{M} 
+    \;\Rightarrow\; 
+    a_n=n^2> M. 
+\end{align*}
+Koristeћi onda definiciju odredjeno divergentnog niza, 
+zakljuchujemo da je 
+$\displaystyle\lim_{n\rightarrow\infty}a_{n}=\infty$. 
+
+(b) Neka su $a$ i $d$ realni brojevi takvi da je 
+$d>0$ i neka je 
+$(a_n)_{n\in\mathbb{N}}$ aritmetichki niz chiji je 
+$n$-ti chlan $a_{n}=a+(n-1)d$. 
+Pored toga, neka je $M$ bilo koji pozitivan realan broj, 
+dok je $n_{0}(M)$ najmanji prirodan broj 
+veћi od $1+(|a|+M)/d$
+(tj., $n_0(M)=\lceil 1+(|a|+M)/d \rceil$). 
+Kako je $n_{0}(M)\geq 1+(|a|+M)/d$, dobijamo 
+\begin{align*}
+    n\geq n_{0}(M)
+    \;\Rightarrow\; 
+    n>1+(|a|+M)/d
+    %\;\Rightarrow\; 
+    %(n-1)d-|a|>M
+    \;\Rightarrow\; 
+    a_n=a+(n-1)d\geq (n-1)d-|a|>M. 
+\end{align*}
+Koristeћi onda definiciju odredjeno divergentnog niza, 
+zakljuchujemo da je 
+$\displaystyle\lim_{n\rightarrow\infty}a_{n}=\infty$. 
+\end{pri}
+
+
+\section{Asimpto\cyr{t}\cyr{s}ke osobine konvergentnih 
+i odredjeno divergentnih nizova} \label{section3}
+
+U ovom odeljku razmatramo asimpto\cyr{t}\cyr{s}ko ponashanje 
+konvergentnih i odredjeno divergentnih nizova, 
+kao i njihove osnovne osobine. 
+
+\begin{thm}\label{thm1}
+Neka je $(a_n)_{n\in\mathbb{N}}$ konvergentan niz realnih brojeva. 
+Onda je njegova granichna vrednost jedinstvena. 
+\end{thm}
+
+\begin{nap}
+Teorema \ref{thm1} pokazuje da nije moguћe da niz realnih brojeva 
+ima dve ili vishe granichnih vrednosti. 
+\end{nap}
+
+\begin{dokaz}
+Pretpostavimo suprotno. 
+Onda niz $(a_n)_{n\in\mathbb{N}}$ ima dve razlichite granichne 
+vrednosti $a$ i $b$. 
+Koristeћi definiciju granichne vrednosti, 
+zakljuchujemo da za svaki pozitivan realan broj $\varepsilon$ 
+postoje prirodni brojevi $k_{0}(\varepsilon)$ i $l_{0}(\varepsilon)$ 
+tako da je 
+\begin{align}\label{t1.1}
+    n>k_{0}(\varepsilon) \;\Rightarrow\; |a_{n}-a|<\varepsilon, 
+    \;\;\;\;\; 
+    n>l_{0}(\varepsilon) \;\Rightarrow\; |a_n-b|<\varepsilon. 
+\end{align}
+Neka je $c=|a-b|$. Kako je $a\neq b$, imamo $c>0$. 
+Onda (\ref{t1.1}) daje 
+\begin{align}\label{t1.3}
+    c=|a-b|=|(a_n-a)-(a_n-b)|
+    \leq 
+    |a_n-a|+|a_n-b|
+    \leq 
+    \frac{2c}{3}
+\end{align}
+za $n>\max\{k_{0}(c/3),l_{0}(c/3)\}$.
+Iz (\ref{t1.3}) sledi $c/3<0$. 
+Ovo je nemoguћe, jer je $c>0$. 
+\end{dokaz}
+
+\begin{thm}\label{thm2}
+Neka je $(a_n)_{n\in\mathbb{N}}$ konvergentan niz realnih brojeva
+i neka je $a=\displaystyle\lim_{n\rightarrow\infty}a_n$.
+Pored toga, neka je $(b_n)_{n\in\mathbb{N}}$ niz realnih brojeva 
+chiji je $n$-ti chlan $b_{n}=a_n-a$. 
+Onda imamo sledeћe: 
+
+(a) $(a_n)_{n\in\mathbb{N}}$ je ogranichen niz. 
+
+(b) $(b_n)_{n\in\mathbb{N}}$ je nula-niz. 
+\end{thm}
+
+\begin{nap}
+Deo (a) teorema \ref{thm2} pokazuje da neogranichen niz 
+nikad nije konvergentan. 
+Deo (b) iste teoreme uspostvlja vezu izmedju konvergentnih i 
+nula nizovam, tj. pokazuje 
+da je $\displaystyle\lim_{n\rightarrow\infty}a_n=a$ 
+ako i samo ako je $(a_n-a)_{n\in\mathbb{N}}$ nula-niz. 
+\end{nap}
+
+\begin{dokaz}
+Na osnovu definicije granichne vrednosti, 
+za svaki pozitivan realn broj $\varepsilon$ postoji prirodan broj 
+$n_{0}(\varepsilon)$ tako da je 
+\begin{align}\label{t2.1}
+    n>n_{0}(\varepsilon)
+    \;\Rightarrow\; 
+    |a_n-a|<\varepsilon. 
+\end{align}
+
+(a)
+Neka je $m=n_0(1)$ i neka je 
+\begin{align*}
+    c=\max\{|a_1|,\dots,|a_m|\}, 
+    \;\;\;\;\; 
+    d=\max\{|a|+1,c\}. 
+\end{align*}
+Onda, koristeћi (\ref{t2.1}), dobijamo 
+\begin{align}\label{t2.3}
+    |a_n|=|(a_n-a)+a|
+    \leq 
+    |a_n-a|+|a|
+    \leq 
+    1+|a|
+    \leq 
+    d
+\end{align}
+za $n>m=n_0(1)$. 
+Pored toga, imamo  
+\begin{align}\label{t2.5}
+    |a_n|
+    \leq 
+    \max\{|a_1|,\dots,|a_m|\}
+    =
+    c
+    \leq d
+\end{align}
+za $1\leq n\leq m$. 
+Iz (\ref{t2.3}) i (\ref{t2.5}) sledi 
+$|a_n|\leq d$ za $n\geq 1$
+(tj. $-d\leq a_n\leq d$ za $n\in\mathbb{N}$).
+Onda, na osnovu definicije ogranichenog niza, 
+zakljuchujemo da je $(a_n)_{n\in\mathbb{N}}$ je obranichen. 
+
+(b)
+Neka je $b=0$. Onda (\ref{t2.1}) daje 
+$|b_n-b|=|a_n-a|<\varepsilon$
+za $n>n_0(\varepsilon)$ i svaki pozitivan realni broj $\varepsilon$. 
+Koristeћi definiciju granichne vrednosti i nula niza 
+zakljuchujemo onda da je 
+$\displaystyle\lim_{n\rightarrow\infty}b_n=b=0$ i 
+da je $(b_n)_{n\in\mathbb{N}}$ nula-niz. 
+\end{dokaz}
+
+\begin{thm}\label{thm3}
+Neka su $(a_n)_{n\in\mathbb{N}}$ i $(b_n)_{n\in\mathbb{N}}$ konvergentni nizovi realnih brojeva. 
+Onda imamo sledeћe: 
+
+(a) Za sve realne brojeve $\alpha$ i $\beta$, 
+niz $\alpha\cdot(a_n)_{n\in\mathbb{N}}+\beta\cdot(b_n)_{n\in\mathbb{N}}$
+je konvergentan i ispunjava 
+\begin{align*}
+    \lim_{n\rightarrow\infty}
+    (\alpha a_{n} + \beta b_{n} )
+    =
+    \alpha \lim_{n\rightarrow\infty} a_{n}
+    + 
+    \beta \lim_{n\rightarrow\infty} b_{n}. 
+\end{align*}
+
+(b) Niz $(a_n)_{n\in\mathbb{N}}\cdot(b_n)_{n\in\mathbb{N}}$
+je konvergentan i ispunjava  
+\begin{align*}
+    \lim_{n\rightarrow\infty}
+    (a_{n}b_{n} )
+    =
+    \lim_{n\rightarrow\infty} a_{n}
+    \cdot
+    \lim_{n\rightarrow\infty} b_{n}. 
+\end{align*}
+
+(v) Ako je $\displaystyle\lim_{n\rightarrow\infty}b_n\neq 0$ i ako je 
+$b_n\neq 0$ za svako $n\in\mathbb{N}$, 
+niz $(a_n)_{n\in\mathbb{N}}/(b_n)_{n\in\mathbb{N}}$
+konvergentan i ispunjava  
+\begin{align*}
+    \lim_{n\rightarrow\infty}
+    \frac{a_{n}}{b_{n} }
+    =
+    \frac{\displaystyle\lim_{n\rightarrow\infty} a_{n} }
+    {\displaystyle\lim_{n\rightarrow\infty} b_{n} }. 
+\end{align*}
+\end{thm}
+
+\begin{nap}
+Teorema \ref{thm3} pokazuje kako se mozhe izrachunati 
+granichna vrednost 
+zbira, razlike, proizvoda i kolichnika konvergentnih nizova. 
+\end{nap}
+
+\begin{dokaz}
+Neka je $a=\displaystyle\lim_{n\rightarrow\infty}a_n$ i 
+$b=\displaystyle\lim_{n\rightarrow\infty}b_n=b$. 
+Onda, na osnovu definicije granichne vrednosti, 
+za svaki pozitivan realan broj $\varepsilon$ postoje 
+prirodni brojevi $k_{0}(\varepsilon)$ i $l_{0}(\varepsilon)$ 
+tako da je 
+\begin{align}\label{t3.1}
+    n>k_{0}(\varepsilon) \;\Rightarrow\; |a_{n}-a|<\varepsilon, 
+    \;\;\;\;\; 
+    n>l_{0}(\varepsilon) \;\Rightarrow\; |b_n-b|<\varepsilon. 
+\end{align}
+
+(a) Ovaj deo teorem je trivijalno ispunje ako je $\alpha=\beta=0$. 
+U nastavku dokaza, pretpostavljavamo da je $\alpha\neq 0$ ili 
+$\beta\neq 0$. 
+Neka je $\gamma=|\alpha|+|\beta|$. 
+Kako je $\alpha\neq 0$ ili $\beta\neq 0$, 
+imamo $\gamma>0$. 
+Pored toga, koristeћi (\ref{t3.1}), dobijamo 
+\begin{align}\label{t3.3}
+    |(\alpha a_n + \beta b_n) - (\alpha a + \beta b)|
+    =&
+    |\alpha(a_n-a)+\beta(b_n-b)|
+    \nonumber\\
+    \leq &
+    |\alpha|\:|a_n-a| 
+    + 
+    |\beta|\:|b_n-b|
+    \nonumber\\
+    \leq &
+    (|\alpha|+|\beta|)
+    \max\{|a_n-a|,|b_n-b| \}
+    \nonumber\\
+    \leq &
+    \gamma\varepsilon
+\end{align}
+za $n\geq\max\{k_{0}(\varepsilon),l_{0}(\varepsilon)\}$. 
+Neka je 
+$n_{0}(\varepsilon)=\max\{k_{0}(\varepsilon/\gamma),
+l_{0}(\varepsilon/\gamma)\}$, gde je $\varepsilon$ 
+pozitivan realan broj. 
+Onda, zamenjujuћi $\varepsilon$ u (\ref{t3.3})  
+vrednoshћu $\varepsilon/\gamma$, dobijamo 
+\begin{align*}
+    |(\alpha a_n + \beta b_n) - (\alpha a + \beta b)|<\varepsilon
+\end{align*}
+za $n>n_{0}(\varepsilon)$. 
+Koristeћi definiciju granichne vrednosti i konvergentong niza, 
+zakljuchujemo onda da je tvrdjenje dela (a) tachno. 
+
+(b) Na osnovu dela (a) teoreme \ref{thm2}, 
+postoji pozitivan realan broj $c$ tako da je 
+$|a_n|\leq c$ za $n\in\mathbb{N}$. 
+Neka je $d=|b|+c$. 
+Kako je $c>0$, imamo $d>0$. 
+Pored toga, koristeћi (\ref{t3.1}), zakljuchujemo  
+\begin{align}\label{t3.5}
+    |a_n b_n - ab|
+    =&
+    |a_n(b_n-b)+b(a_n-a)|
+    \nonumber\\
+    \leq &
+    |a_n|\:|b_n-b| 
+    + 
+    |b|\:|a_n-a|
+    \nonumber\\
+    \leq &
+    (|b|+d)
+    \max\{|a_n-a|,|b_n-b| \}
+    \nonumber\\
+    \leq &
+    d\varepsilon
+\end{align}
+za $n\geq\max\{k_{0}(\varepsilon),l_{0}(\varepsilon)\}$. 
+Neka je 
+$n_{0}(\varepsilon)=\max\{k_{0}(\varepsilon/d),
+l_{0}(\varepsilon/d)\}$, gde je $\varepsilon$ 
+pozitivan realan broj. 
+Onda, zamenjujuћi $\varepsilon$ u (\ref{t3.5})  
+vrednoshћu $\varepsilon/d$, dobijamo 
+$|a_n b_n - ab|<\varepsilon$ 
+za $n>n_{0}(\varepsilon)$. 
+Koristeћi definiciju granichne vrednosti i konvergentong niza, 
+zakljuchujemo onda da je tvrdjenje dela (b) tachno. 
+
+(v) Kako je $b\neq 0$ i $b_n\neq 0$, imamo 
+da je $|b|>0$ i $|b_n|>0$ za svako $n\in\mathbb{N}$.
+Neka je $m=l_0(|b|/2)$ i neka je 
+\begin{align*}
+    \alpha=\min\{|b_1|,\dots,|b_m|\}, 
+    \;\;\;\;\; 
+    \beta=\min\left\{\alpha,|b|/2\right\}. 
+\end{align*}
+Onda, koristeћi (\ref{t3.1}), dobijamo 
+\begin{align}\label{t3.7}
+    |b_n|=|(b_n-b)+b|
+    \geq 
+    |b|-|b_n-b|
+    \geq 
+    \frac{|b|}{2}
+    \geq 
+    \beta
+\end{align}
+za $n>m=l_0(|b|/2)$. 
+Pored toga, imamo  
+\begin{align}\label{t3.9}
+    |b_n|
+    \geq 
+    \min\{|b_1|,\dots,|b_m|\}
+    =
+    \alpha
+    \geq \beta
+\end{align}
+za $1\leq n\leq m$. 
+Iz (\ref{t3.7}) i (\ref{t3.9}) sledi 
+$|b_n|\geq\beta$ za $n\in\mathbb{N}$. 
+
+Neka je $c=(1+|a|/|b|)/\beta$. 
+Kako je $|b|>0$ i $|b_n|>0$ za svako $n\in\mathbb{N}$, 
+imamo da je $\beta>0$ i $c>0$.  
+Pored toga, koristeћi (\ref{t3.1}), dobijamo  
+\begin{align}\label{t3.21}
+    \left|\frac{a_n}{b_n} - \frac{a}{b}\right|
+    =&
+    \left|\frac{b(a_n-a)-a(b_n-b)}{b\:b_n} \right|
+    \nonumber\\
+    \leq &
+    \frac{|b|\: |a_n-a| + |a|\: |b_n-b|}{|b|\: |b_n|}
+    \nonumber\\
+    \leq &
+   \frac{|a|+|b|}{\beta |b|}
+    \max\{|a_n-a|,|b_n-b| \}
+    \nonumber\\
+    \leq &
+    c\varepsilon
+\end{align}
+za $n\geq\max\{k_{0}(\varepsilon),l_{0}(\varepsilon)\}$. 
+Neka je 
+$n_{0}(\varepsilon)=\max\{k_{0}(\varepsilon/c),
+l_{0}(\varepsilon/c)\}$, gde je $\varepsilon$ 
+pozitivan realan broj. 
+Onda, zamenjujuћi $\varepsilon$ u (\ref{t3.21})  
+vrednoshћu $\varepsilon/c$, dobijamo 
+\begin{align*}
+    \left|\frac{a_n}{b_n} - \frac{a}{b}\right|<\varepsilon
+\end{align*}
+za $n>n_{0}(\varepsilon)$. 
+Koristeћi definiciju granichne vrednosti i konvergentong niza, 
+zakljuchujemo onda da je tvrdjenje dela (c) tachno. 
+\end{dokaz}
+
+Teorema \ref{thm3} ilustrovana je sledeћim primerima. 
+
+\begin{pri}
+(a) Neka je $(a_n)_{n\in\mathbb{N}}$ harmonijski niz 
+(tj. $a_n=1/n$ za svako $n\in\mathbb{N}$). 
+Pokazhimo da je $(a_n)_{n\in\mathbb{N}}$ nula-niz. 
+Neka je $(b_n)_{n\in\mathbb{N}}$ niz chiji je $n$-ti
+chlan $b_n=(n-1)/n$. 
+Onda imamo $a_n=1-b_n$, 
+dok deo (a) primera \ref{pri3.1} daje 
+$\displaystyle\lim_{n\rightarrow\infty}b_n=1$. 
+Koristeћi deo (a) teoreme \ref{thm3} dobijamo 
+\begin{align*}
+    \lim_{n\rightarrow\infty}
+    a_n=
+    \lim_{n\rightarrow\infty}(1-b_n)
+    =
+    1-\lim_{n\rightarrow\infty}b_n
+    =0, 
+\end{align*}
+tj. $(a_n)_{n\in\mathbb{N}}$ je nula-niz. 
+
+(b) Neka je $(a_n)_{n\in\mathbb{N}}$ niz chiji je $n$-ti 
+chlan 
+\begin{align*}
+    a_n=\frac{3-2n+5}{4n^2+n-6}. 
+\end{align*}
+Pokazhimo da je $\displaystyle\lim_{n\rightarrow\infty}a_n=3/4$. 
+Neka su $(b_n)_{n\in\mathbb{N}}$ i $(c_n)_{n\in\mathbb{N}}$ 
+nizovi ciji su 
+$n$-ti chlaovi 
+\begin{align*}
+    b_n=3-\frac{2}{n}+\frac{5}{n^2}, 
+    \;\;\;\;\; 
+     c_n=4+\frac{1}{n}-\frac{6}{n^2}. 
+\end{align*}
+Onda imamo $a_n=b_n/c_n$, 
+dok delovi (a), (b) Teoreme \ref{thm3} i deo (a) ovog primera daju 
+\begin{align}
+    &\label{p4.1.1}
+    \lim_{n\rightarrow\infty} b_n
+    =
+    \lim_{n\rightarrow\infty}
+    \left(3-\frac{2}{n}+\frac{5}{n^2} \right)
+    =
+    3 
+    - 
+    2\lim_{n\rightarrow\infty}\frac{1}{n}
+    +
+    5\left(\lim_{n\rightarrow\infty}\frac{1}{n} \right)^2
+    =
+    3, 
+    \\
+    &\label{p4.1.3}
+    \lim_{n\rightarrow\infty} c_n
+    =
+    \lim_{n\rightarrow\infty}
+    \left(4+\frac{1}{n}-\frac{6}{n^2} \right)
+    =
+    4 
+    + 
+    \lim_{n\rightarrow\infty}\frac{1}{n}
+    -
+    6\left(\lim_{n\rightarrow\infty}\frac{1}{n} \right)^2
+    =
+    4. 
+\end{align}
+Koristeћi deo (b) teoreme \ref{thm3} i (\ref{p4.1.1}), (\ref{p4.1.3}), 
+dobijamo 
+\begin{align*}
+    \lim_{n\rightarrow\infty}
+    a_n
+    =
+    \lim_{n\rightarrow\infty}\frac{b_n}{c_n}
+    =
+    \frac{\displaystyle\lim_{n\rightarrow\infty}b_n}
+    {\displaystyle\lim_{n\rightarrow\infty}c_n}
+    =\frac{3}{4}.  
+\end{align*}
+\end{pri}
+
+\begin{thm}\label{thm4}
+Neka su $(a_n)_{n\in\mathbb{N}}$, 
+$(b_n)_{n\in\mathbb{N}}$ i 
+$(c_n)_{n\in\mathbb{N}}$ nizovi realnih brojeva 
+sa sledeћim osobinama: 
+
+(a) $a_n\leq c_n \leq b_n$ za svako $n\in\mathbb{N}$. 
+
+(b) $(a_n)_{n\in\mathbb{N}}$ i $(b_n)_{n\in\mathbb{N}}$
+su konvergentni i ispunjavaju 
+$\displaystyle\lim_{n\rightarrow\infty} a_n = 
+\displaystyle\lim_{n\rightarrow\infty} b_n$. 
+\\
+Onda je $(c_n)_{n\in\mathbb{N}}$ konvergentan niz za koji vazhi $\displaystyle\lim_{n\rightarrow\infty} c_n =
+\displaystyle\lim_{n\rightarrow\infty} a_n$. 
+\end{thm}
+
+\begin{nap}
+U anglosaksonskoj literaturi, 
+Teorema \ref{thm4} naziva se sendvich teorema. 
+Ova teorema pokazuje da je niz konvergentan ako je ,,ukljeshten''
+izmedju dva konvergentna niza sa istim granichnim vrednostima. 
+\end{nap}
+
+\begin{dokaz}
+Videti referencu \cite{kadelburg}. 
+\end{dokaz}
+
+\begin{thm}\label{thm5}
+(a) Neka je $(a_n)_{n\in\mathbb{N}}$ monotono rastuћi i 
+odozgo ogranichen niz realnih brojeva. 
+Onda je $(a_n)_{n\in\mathbb{N}}$ konvergentan. 
+
+(b) Neka je $(b_n)_{n\in\mathbb{N}}$ monotono opadajuћi i 
+odozdo ogranichen niz realnih brojeva. 
+Onda je $(b_n)_{n\in\mathbb{N}}$ konvergentan. 
+\end{thm}
+
+\begin{nap}
+Teorema \ref{thm5} uspostavlja vezu izmedju 
+konvergenicije, ogranichenosti i monotonosti nizova. 
+Na osnovu ove teoreme, monoton i ogranichen niz je uvek konvergentan. 
+\end{nap}
+
+\begin{dokaz}
+Videti referencu \cite{kadelburg}. 
+\end{dokaz}
+
+Teoreme \ref{thm4} i \ref{thm5} ilustrovane su sledeћim primerima. 
+
+\begin{pri}
+(a) Neka je $q$ realan broj takav da je $0\leq q<1$
+i neka je $(a_n)_{n\in\mathbb{N}}$ niz chiji je $n$-ti chan 
+$a_n=q^n$. 
+Pokazhimo da je $\displaystyle\lim_{n\rightarrow\infty}a_n=0$. 
+Kako je $a_{n+1}=a_n q$ i $0\leq q<1$, 
+$(a_n)_{n\in\mathbb{N}}$ je monotono opadajuћi niz. 
+S obzirom da je $a_n\geq 0$, iz dela (b) teoreme \ref{thm5} 
+sledi da je $(a_n)_{n\in\mathbb{N}}$ konvergentan, 
+tj. postoji realan broj $a$ tako da je 
+$\displaystyle\lim_{n\rightarrow\infty}a_n=a$. 
+Kako je $a_{n+1}=a_n q$, deo (a) teorem \ref{thm3} daje 
+\begin{align*}
+    a
+    =
+    \lim_{n\rightarrow\infty}a_{n+1}
+    =
+    \lim_{n\rightarrow\infty}(a_{n}q)
+    =
+    q\lim_{n\rightarrow\infty}a_{n}
+    =
+    aq, 
+\end{align*}
+tj. $a(q-1)=0$. 
+S obzirom da je $q\neq 1$, 
+zakljuchujemo da je $a=0$, 
+tj. $\displaystyle\lim_{n\rightarrow\infty}a_=0$. 
+
+(b) Neka su $a$ i $q$ realni brojevi takvi da je $-1<q<1$ 
+i neka je neka je $(a_n)_{n\in\mathbb{N}}$ harmonijski 
+niz chiji je $n$-ti chan 
+$a_n=aq^n$. 
+Pokazhimo da je $\displaystyle\lim_{n\rightarrow\infty}a_n=0$. 
+Neka su $(b_n)_{n\in\mathbb{N}}$ i $(c_n)_{n\in\mathbb{N}}$
+nizovi chiji su $n$-ti chlanovi 
+$b_n=-|a|\:|q|^n$ i $c_n=|a|\:|q|^n$. 
+Kako je $0\leq |q|<1$, deo (a) teorem \ref{thm3} 
+i deo (a) ovog primera daju 
+\begin{align}
+    &\label{p4.2.1}
+    \lim_{n\rightarrow\infty}b_n
+    =
+    \lim_{n\rightarrow\infty}(-|a|\:|q|^n)
+    =
+    -|a|\lim_{n\rightarrow\infty}|q|^n
+    =
+    0, 
+    \\
+    &\label{p4.2.3}
+    \lim_{n\rightarrow\infty}c_n
+    =
+    \lim_{n\rightarrow\infty}(|a|\:|q|^n)
+    =
+    |a|\lim_{n\rightarrow\infty}|q|^n
+    =
+    0. 
+\end{align}
+S obzirom da je $b_n\leq a_n\leq c_n$, 
+iz teoreme \ref{thm4} i (\ref{p4.2.1}), (\ref{p4.2.3})
+sledi da je 
+$\displaystyle\lim_{n\rightarrow\infty}a_n=
+\displaystyle\lim_{n\rightarrow\infty}b_n=0$. 
+\end{pri}
+
+\begin{thm}\label{thm6}
+(a) Neka je $(a_n)_{n\in\mathbb{N}}$ odredjeno divergentan niz 
+realnih brojeva takav da je $a_n\neq 0$ za svako $n\in\mathbb{N}$.
+Onda je $\displaystyle\lim_{n\rightarrow\infty}1/a_n=0$
+(tj. $1/(a_n)_{n\in\mathbb{N}}$ je nula niz). 
+
+(b) Neka je $(b_n)_{n\in\mathbb{N}}$ nula niz 
+realnih brojeva takav da je $b_n\neq 0$ za svako $n\in\mathbb{N}$. 
+Ako postoji prirodan broj $k$ tako da je $b_n>0$ za $n>k$, 
+onda je $\displaystyle\lim_{n\rightarrow\infty}1/b_n=\infty$
+(tj. $1/(b_n)_{n\in\mathbb{N}}$ je odredjeno divergentan niz).
+
+(v) Neka je $(c_n)_{n\in\mathbb{N}}$ nula niz 
+realnih brojeva takav da je $c_n\neq 0$ za svako $n\in\mathbb{N}$. 
+Ako postoji prirodan broj $l$ tako da je $c_n<0$ za $n>l$, 
+onda je $\displaystyle\lim_{n\rightarrow\infty}1/c_n=-\infty$
+(tj. $1/(c_n)_{n\in\mathbb{N}}$ je odredjeno divergentan niz).
+\end{thm}
+
+\begin{nap}
+Teorema \ref{thm6} uspostavlja vezu izmedju odredjeno divergentnih 
+i nula nizova. 
+Na osnovu dela (a), 
+niz reciprochan odredjeno divergentnom nizu je nula-niz. 
+Deo (b) pokazuje da je niz 
+reciprochan nula-nizu pozitivnih realnih brojeva odredjeno divergentan. 
+Na osnovu dela (v), isto vazhi za niz reciprochan 
+nula-nizu negativnih realnih brojeva. 
+\end{nap}
+
+\begin{dokaz}
+Videti referencu \cite{kadelburg}. 
+\end{dokaz}
+
+\begin{thebibliography}{10}
+
+\bibitem{green}
+\lat
+J. A. Green, {\em Sequences and Series,}
+{Rountledge} \& Kegan Paul Ltd 
+and Dover Publications, New York, 1958.  
+\cyr
+\bibitem{kadelburg}
+Zoran Kadelburg, Vladimir Miћић, Srdjan Ognjanoviћ 
+i Sonja Чукић,  
+{\em Analiza sa Algebrom, Udџbenik sa zbirkom zadataka za 3. razred Matematiчke gimnazije,}
+Krug, Beograd, 2018. 
+
+\end{thebibliography}
+
+\end{document}
